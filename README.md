@@ -1,5 +1,5 @@
 # useinsider-tests
-Опис проекту
+Test exersice for useinsiders
 ## Getting started
 install JDK
 * download jdk (corretto-17.0.5)
