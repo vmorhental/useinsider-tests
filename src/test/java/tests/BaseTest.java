@@ -1,20 +1,24 @@
 package tests;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import com.codeborne.selenide.WebDriverRunner;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public abstract class BaseTest {
-    @BeforeTest
+    @BeforeMethod
     public void setUp() {
         Configuration.browserSize = "1920x1080";
         Selenide.open("https://useinsider.com/");
+        $("#wt-cli-accept-all-btn").scrollIntoView(true).shouldBe(Condition.visible).click();
     }
 
-    @AfterTest
+    @AfterMethod
     public void shutDown() {
-        Selenide.closeWebDriver();
+        WebDriverRunner.getWebDriver().quit();
     }
 }
